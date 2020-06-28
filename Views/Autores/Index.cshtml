@@ -1,0 +1,66 @@
+@model IEnumerable<LibreriaMVC.Models.Autores>
+
+    @{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    <h1>Autores</h1>
+
+    <p>
+        <a asp-action="Create" class="btn btn-success btn-lg float-left">
+            <i class="fas fa-plus"></i>
+            Nuevo autor
+        </a>
+    </p>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <caption>Lista de autores</caption>
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.nombre)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.apellido)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.nacionalidad)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fechaNacimiento)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.apellido)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nacionalidad)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fechaNacimiento)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-primary btn-sm">
+                            <i class="fas fa-pencil-alt"></i>
+                            Editar</a>
+                        <a asp-action="Details" asp-route-id="@item.ID" class="btn btn-info btn-sm">
+                            <i class="fas fa-eye"></i>
+                            Ver</a>
+                        <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger btn-sm">
+                            <i class="fas fa-trash-alt"></i>
+                            Eliminar</a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
