@@ -1,0 +1,54 @@
+@{
+    ViewData["Title"] = "Administracion";
+}
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<div class="text-center">
+    <h1 class="display-4">Bienvenido: @UserManager.GetUserName(User)</h1>
+    
+    <!-- Panel de administración -->
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidebarmenu" class="col-md-3 col-lg-2 d-md-bl gb-light sider collapse">
+                <div class="sidebar-sticky pt-3">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">
+                                <span style="font-size: 48px; color: Dodgerblue;">
+                                    <i class="fas fa-landmark"></i>
+                                </span>
+                                 Dashboard
+                            </a>
+                        </li>
+                         <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span style="font-size: 48px; color: Dodgerblue;">
+                                    <i class="fas fa-users"></i>
+                                </span>
+                                 Autores
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span style="font-size: 48px; color: Dodgerblue;">
+                                    <i class="fas fa-store"></i>
+                                </span>
+                                 Editoriales
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span style="font-size: 48px; color: Dodgerblue;">
+                                    <i class="fas fa-book"></i>
+                                </span>
+                                 Libros
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>

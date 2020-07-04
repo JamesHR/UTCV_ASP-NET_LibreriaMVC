@@ -31,8 +31,8 @@ namespace LibreriaMVC
             //Requerimos autenticación
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
 
-            //services.AddDbContext<LibreriaDbContext>(
-            //    options => options.UseSqlServer(Configuration.GetConnectionString("LibrotecaDbContext")));
+            services.AddDbContext<LibreriaDbContext>(
+                options => options.UseSqlServer(Configuration.GetConnectionString("LibrotecaDbContext")));
             
             services.AddControllersWithViews();
             services.AddRazorPages();
