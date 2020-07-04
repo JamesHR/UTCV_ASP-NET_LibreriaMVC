@@ -1,0 +1,131 @@
+﻿@model Usuarios
+@{
+    ViewData["Title"] = "Registrar";
+}
+<form id="frmRegistro" class="needs-validation" novalidate asp-controller="Usuario" asp-action="Add">
+    <div class="row">
+        <div class="col">
+            <label for="iNombre">Nombre:</label>
+            <input type="text" class="form-control" placeholder="Nombre(s)" id="iNombre" asp-for="Nombre" required>
+            <div class="valid-feedback">
+                Completo 100%.
+            </div>
+            <div class="invalid-feedback">
+                Campo obligatorio.
+            </div>
+        </div>
+        <div class="col">
+            <label for="iApellido">Primer Apellido:</label>
+            <input type="text" class="form-control" placeholder="Apellido Paterno" id="iApellido" asp-for="pApellido" required />
+            <div class="valid-feedback">
+                Completo 100%.
+            </div>
+            <div class="invalid-feedback">
+                Campo obligatorio.
+            </div>
+        </div>
+        <div class="col">
+            <label for="iApellidoM">Segundo Apellido:</label>
+            <input type="text" class="form-control" placeholder="Apellido Materno" id="iApellidoM" asp-for="sApellido" >
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label for="iCorreo">Correo Electrónico:</label>
+            <input type="email" class="form-control" placeholder="Correo electrónico" id="iCorreo" asp-for="Correo" required>
+            <div class="valid-feedback">
+                Completo 100%.
+            </div>
+            <div class="invalid-feedback">
+                El campo es obligatorio y debe ser un correo válido.
+            </div>
+        </div>
+        <div class="col">
+            <label for="iTelefono">Teléfono:</label>
+            <input type="tel" class="form-control" placeholder="(###)##-#####" id="iTelefono" asp-for="Telefono" required>
+            <div class="valid-feedback">
+                Completo 100%.
+            </div>
+            <div class="invalid-feedback">
+                El campo es obligatorio y debe ser un teléfono válido.
+            </div>
+        </div>
+        <div class="col">
+            <label for="iPais">Pais:</label>
+            <select class="custom-select" id="iPais" asp-for="Pais">
+                <option selected>México</option>
+                <option value="1">Estados Unidos</option>
+                <option value="2">Canada</option>
+                <option value="3">Otro</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class=" col">
+            <label for="iPassword">Contraseña:</label>
+            <input type="password" class="form-control" id="iPassword" asp-for="Password" required />
+            <div class="valid-feedback">
+                Completo 100%.
+            </div>
+            <div class="invalid-feedback">
+                Campo obligatorio.
+            </div>
+        </div>
+        <div class=" col">
+            <label for="iPassword2">Repite contraseña:</label>
+            <input type="password" class="form-control" id="iPassword2" required>
+            <div id="valido" class="valid-feedback">
+                Completo 100%.
+            </div>
+            <div id="invalido" class="invalid-feedback">
+                Campo obligatorio.
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col text-center">
+            <button id="btnSubmit" class="btn btn-primary mr-1" type="submit"> <i class="fas fa-address-book"></i> Registrar</button>
+            <a class="btn btn-danger"><i class="fas fa-broom"></i> Cancelar</a>
+        </div>
+    </div>
+
+    <div class="alert alert-danger">
+        @Html.ValidationMessage("Error")
+    </div>
+
+</form>
+<!-- Validaciones -->
+<script>
+// SCRIPT PARA DESHABILITAR EL BOTÓN ENTRAR, SI HAY CAMPOS INVALIDOS
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+                var forms = document.getElementsByClassName('needs-validation');
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if ($('#iPassword').val() != $('#iPassword2').val()) {
+                            $('#valido').hide();
+                            $('#invalido').show();
+                            $('#invalido').html('Las contraseñas no coinciden').css('color', 'red');
+                            $('#iPassword2').removeClass('is-valid');
+                            $('#iPassword2').addClass('is-invalid');
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        else {
+                            $('#iPassword2').removeClass('is-invalid');
+                            $('#valido').show();
+                            $('#invalido').hide();
+                        }
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                        
+                    }, false);
+                });
+            }, false);
+
+        })();</script>

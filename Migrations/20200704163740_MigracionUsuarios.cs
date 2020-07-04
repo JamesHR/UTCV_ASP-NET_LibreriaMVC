@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace LibreriaMVC.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class MigracionUsuarios : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -37,6 +37,27 @@ namespace LibreriaMVC.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Editorial", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Usuarios",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nombre = table.Column<string>(nullable: true),
+                    pApellido = table.Column<string>(nullable: true),
+                    sApellido = table.Column<string>(nullable: true),
+                    Correo = table.Column<string>(nullable: true),
+                    Telefono = table.Column<string>(nullable: true),
+                    Pais = table.Column<string>(nullable: true),
+                    Password = table.Column<string>(nullable: true),
+                    FechaRegistro = table.Column<DateTime>(nullable: false),
+                    Rol = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Usuarios", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -83,6 +104,9 @@ namespace LibreriaMVC.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Libro");
+
+            migrationBuilder.DropTable(
+                name: "Usuarios");
 
             migrationBuilder.DropTable(
                 name: "Autor");

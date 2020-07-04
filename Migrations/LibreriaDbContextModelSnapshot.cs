@@ -4,20 +4,18 @@ using LibreriaMVC.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LibreriaMVC.Migrations
 {
     [DbContext(typeof(LibreriaDbContext))]
-    [Migration("20200606152214_InitialCreate")]
-    partial class InitialCreate
+    partial class LibreriaDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.4")
+                .HasAnnotation("ProductVersion", "3.1.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -98,6 +96,45 @@ namespace LibreriaMVC.Migrations
                     b.HasIndex("EditorialesID");
 
                     b.ToTable("Libro");
+                });
+
+            modelBuilder.Entity("LibreriaMVC.Models.Usuarios", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Correo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("FechaRegistro")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Nombre")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Pais")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Rol")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Telefono")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("pApellido")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("sApellido")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Usuarios");
                 });
 
             modelBuilder.Entity("LibreriaMVC.Models.Libros", b =>

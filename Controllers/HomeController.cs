@@ -32,8 +32,11 @@ namespace LibreriaMVC.Controllers
 
         public IActionResult Login()
         {
-            //return RedirectToAction("Login", "Account");
-            //return View("/Account/Login");
+            return View();
+        }
+
+        public IActionResult Registro()
+        {
             return View();
         }
 

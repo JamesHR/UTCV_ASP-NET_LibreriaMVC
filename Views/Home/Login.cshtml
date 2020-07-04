@@ -1,10 +1,13 @@
-@page
+@model Usuarios
 @{
+    ViewData["Title"]="Inicio de sesión";
+}
+
     <div class="mx-auto">
         <form class="needs-validation">
             <div class="form-group">
                 <label for="InputUsuario">Usuario:</label>
-                <input type="text" class="form-control" id="InputUsuario" aria-describedby="usuarioHelp"
+                <input type="text" class="form-control" id="InputUsuario" asp-for="Correo" aria-describedby="usuarioHelp"
                     placeholder="Ingrese su usuario" required>
                 <small id="usuarioHelp" class="form-text text-muted">Los datos de acceso son confidenciales.</small>
                 <div class="valid-feedback">
@@ -16,16 +19,16 @@
             </div>
             <div class="form-group">
                 <label for="InputContrasenia">Contraseña</label>
-                <input type="password" class="form-control" id="InputContrasenia" placeholder="Contraseña" required>
+                <input type="password" class="form-control" id="InputContrasenia" asp-for="Password" placeholder="Contraseña" required>
             </div>
             <br />
             <small>¿No eres usuario registrado?</small>
             <br />
-            <a class="btn btn-outline-primary">Registrate</a>
+            <a class="btn btn-outline-primary" asp-controller="Home" asp-action="Registro">Registrate</a>
             <button type="submit" class="btn btn-primary">Entrar</button>
         </form>
     </div>
-    
+
     <!-- Script de validación -->
     <script>
         // Example starter JavaScript for disabling form submissions if there are invalid fields
@@ -45,6 +48,5 @@
                     }, false);
                 });
             }, false);
-        })(); 
+        })();
     </script>
-}

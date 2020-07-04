@@ -10,6 +10,7 @@ namespace LibreriaMVC.Data
         public DbSet<Autores> Autor { get; set; }
         public DbSet<Libros> Libro { get; set; }
         public DbSet<Editoriales> Editorial { get; set; }
+        public DbSet<Usuarios> Usuarios { get; set; }
 
         //Builder
         public LibreriaDbContext(DbContextOptions<LibreriaDbContext> options) : base(options)
