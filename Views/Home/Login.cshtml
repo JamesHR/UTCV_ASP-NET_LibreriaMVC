@@ -4,7 +4,18 @@
 }
 
     <div class="mx-auto">
-        <form class="needs-validation">
+        <!-- Inicio alertas -->
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>ERROR</strong> @Html.ValidationMessage("Error")
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        }
+        <!-- Fin alertas -->
+        <form class="needs-validation" method="post" asp-controller="Usuario" asp-action="login">
             <div class="form-group">
                 <label for="InputUsuario">Usuario:</label>
                 <input type="text" class="form-control" id="InputUsuario" asp-for="Correo" aria-describedby="usuarioHelp"

@@ -20,9 +20,7 @@ namespace LibreriaMVC.Controllers
 
         public IActionResult Index()
         {
-            if (User.Identity.IsAuthenticated)
-                return RedirectToAction("Index", "Catalogos");
-            else return View();
+            return View();
         }
 
         public IActionResult Privacy()
