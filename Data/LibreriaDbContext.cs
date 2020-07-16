@@ -11,6 +11,7 @@ namespace LibreriaMVC.Data
         public DbSet<Libros> Libro { get; set; }
         public DbSet<Editoriales> Editorial { get; set; }
         public DbSet<Usuarios> Usuarios { get; set; }
+        public DbSet<UsuariosSalt> UsuariosSalt { get; set; }
 
         //Builder
         public LibreriaDbContext(DbContextOptions<LibreriaDbContext> options) : base(options)

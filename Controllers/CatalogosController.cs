@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LibreriaMVC.Controllers
 {
-    [Authorize]
+    [Authorize(Roles="admin")]
     public class CatalogosController : Controller
     {
         public CatalogosController () {}

@@ -4,14 +4,16 @@ using LibreriaMVC.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LibreriaMVC.Migrations
 {
     [DbContext(typeof(LibreriaDbContext))]
-    partial class LibreriaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200716075308_EncriptMigration")]
+    partial class EncriptMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

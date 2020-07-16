@@ -3,9 +3,7 @@
 }
 
 <link href="~/css/dashboard.css" rel="stylesheet">
-<div class="text-center">
-    <h1 class="display-4">Bienvenido: </h1>
-    
+<div class="text-center">    
     <!-- Panel de administración -->
     <div class="container-fluid">
         <div class="row">
@@ -21,7 +19,7 @@
                             </a>
                         </li>
                          <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" asp-controller="Catalogos" asp-action="Autor">
                                 <span>
                                     <i class="fas fa-users"></i>
                                 </span>
@@ -49,6 +47,9 @@
             </nav>
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
                 <div class="text-center">
+                    <br>
+                    <h3>Bienvenido @User.Identity.Name</h3>
+                    <hr>
                     <img width="400" src="~/images/logo.png" alt="Around">
                 </div>
             </main>

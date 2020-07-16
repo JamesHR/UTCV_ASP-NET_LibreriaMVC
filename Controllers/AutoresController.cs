@@ -15,7 +15,6 @@ namespace LibreriaMVC.Controllers
     public class AutoresController : Controller
     {
         private readonly LibreriaDbContext _context;
-
         public AutoresController(LibreriaDbContext context)
         {
             _context = context;

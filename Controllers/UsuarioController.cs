@@ -27,11 +27,19 @@ namespace LibreriaMVC.Controllers
         {
             if (ModelState.IsValid)
             {
+                EncryptationController encrypt = new EncryptationController();
+                UsuariosSalt userSalt = new UsuariosSalt();
+
                 usu.FechaRegistro = DateTime.Now;
                 usu.Rol = "cliente";
+                usu.Password = encrypt.getHash(usu.Password);
+                
+                userSalt.usuario = usu;
+                userSalt.Salt = encrypt.salt;
 
                 //Agregar el usuario
                 con.Add(usu);
+                con.Add(userSalt);
 
                 // Insertar el cambio a la base de datos
                 await con.SaveChangesAsync();
@@ -55,9 +63,14 @@ namespace LibreriaMVC.Controllers
             }
             else
             {
-                // Datos invalidos
-                var usuario = await con.Usuarios.FirstOrDefaultAsync (u => u.Correo == usu.Correo && u.Password == usu.Password);
-                if(usuario == null)
+                // Datos validos                
+                EncryptationController encrypt = new EncryptationController();
+
+                var usuario = await con.Usuarios.FirstOrDefaultAsync (u => u.Correo == usu.Correo);
+                var salt = (usuario != null) ? await con.UsuariosSalt.FirstOrDefaultAsync(s => s.Id == usuario.Id) : null;
+                var hash = (salt != null) ? encrypt.getHash(usu.Password, encrypt.ReadSalt(salt.Salt)) : null;
+
+                if(usuario == null || salt == null || usuario.Password != hash)
                 {
                     ModelState.AddModelError("Error", "Las credenciales proporcionadas no son válidas");
                     // Carga la vista de Login y mando el modelo
@@ -67,7 +80,7 @@ namespace LibreriaMVC.Controllers
                 {
                     var claims = new List<Claim>
                     {
-                        new Claim(ClaimTypes.Name, usuario.Nombre + "" + usuario.pApellido),
+                        new Claim(ClaimTypes.Name, usuario.Nombre + " " + usuario.pApellido),
                         new Claim(ClaimTypes.Email, usuario.Correo),
                         new Claim(ClaimTypes.Role, usuario.Rol)
                     };
