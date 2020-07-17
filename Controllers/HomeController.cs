@@ -23,6 +23,13 @@ namespace LibreriaMVC.Controllers
             return View();
         }
 
+        public IActionResult Home()
+        {
+            return (User.Identity.IsAuthenticated) ?
+            RedirectToAction("homeLogged", "Usuario") :
+            RedirectToAction(nameof(Index));
+        }
+
         public IActionResult Privacy()
         {
             return View();

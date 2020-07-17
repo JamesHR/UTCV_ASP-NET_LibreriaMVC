@@ -7,12 +7,15 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using LibreriaMVC.Data;
 using LibreriaMVC.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LibreriaMVC.Controllers
 {
+    [Authorize(Roles="admin")]
     public class EditorialesController : Controller
     {
         private readonly LibreriaDbContext _context;
+        private readonly string viewPath = "../Catalogos/Editoriales";
 
         public EditorialesController(LibreriaDbContext context)
         {
@@ -22,7 +25,7 @@ namespace LibreriaMVC.Controllers
         // GET: Editoriales
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Editorial.ToListAsync());
+            return View($"{viewPath}/Index", await _context.Editorial.ToListAsync());
         }
 
         // GET: Editoriales/Details/5
@@ -40,13 +43,13 @@ namespace LibreriaMVC.Controllers
                 return NotFound();
             }
 
-            return View(editoriales);
+            return View($"{viewPath}/Details", editoriales);
         }
 
         // GET: Editoriales/Create
         public IActionResult Create()
         {
-            return View();
+            return View($"{viewPath}/Create");
         }
 
         // POST: Editoriales/Create
@@ -62,7 +65,7 @@ namespace LibreriaMVC.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(editoriales);
+            return View($"{viewPath}/Create", editoriales);
         }
 
         // GET: Editoriales/Edit/5
@@ -78,7 +81,7 @@ namespace LibreriaMVC.Controllers
             {
                 return NotFound();
             }
-            return View(editoriales);
+            return View($"{viewPath}/Edit", editoriales);
         }
 
         // POST: Editoriales/Edit/5
@@ -113,7 +116,7 @@ namespace LibreriaMVC.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(editoriales);
+            return View($"{viewPath}/Edit", editoriales);
         }
 
         // GET: Editoriales/Delete/5
@@ -131,7 +134,7 @@ namespace LibreriaMVC.Controllers
                 return NotFound();
             }
 
-            return View(editoriales);
+            return View($"{viewPath}/Delete", editoriales);
         }
 
         // POST: Editoriales/Delete/5

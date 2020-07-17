@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LibreriaMVC.Controllers
 {
@@ -99,13 +100,15 @@ namespace LibreriaMVC.Controllers
                         authProperties
                     );
 
-                    // Indicar la vista a donde se debe ir después del inicio de sesión
-                    return (usuario.Rol.ToString().Trim().Equals("cliente")) ? 
-                        RedirectToAction("Index", "Home")
-                        : RedirectToAction("Index", "Catalogos");
+                     return RedirectToAction(nameof(homeLogged));
                 }
             }
         }
+
+        public IActionResult homeLogged () =>
+            (HttpContext.User.IsInRole("cliente")) ? 
+                        RedirectToAction("Index", "Home")
+                        : RedirectToAction("Index", "Catalogos");
 
         // 5. Función para cerrar sesión
         [HttpGet]

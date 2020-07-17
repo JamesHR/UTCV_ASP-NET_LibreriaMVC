@@ -7,12 +7,15 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using LibreriaMVC.Data;
 using LibreriaMVC.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LibreriaMVC.Controllers
 {
+    [Authorize(Roles="admin")]
     public class LibrosController : Controller
     {
         private readonly LibreriaDbContext _context;
+        private readonly string viewPath = "../Catalogos/Libros";
 
         public LibrosController(LibreriaDbContext context)
         {
@@ -23,7 +26,7 @@ namespace LibreriaMVC.Controllers
         public async Task<IActionResult> Index()
         {
             var libreriaDbContext = _context.Libro.Include(l => l.autor).Include(l => l.editorial);
-            return View(await libreriaDbContext.ToListAsync());
+            return View($"{viewPath}/Index", await libreriaDbContext.ToListAsync());
         }
 
         // GET: Libros/Details/5
@@ -43,7 +46,7 @@ namespace LibreriaMVC.Controllers
                 return NotFound();
             }
 
-            return View(libros);
+            return View($"{viewPath}/Details", libros);
         }
 
         // GET: Libros/Create
@@ -51,7 +54,7 @@ namespace LibreriaMVC.Controllers
         {
             ViewData["AutoresID"] = new SelectList(_context.Autor, "ID", "ID");
             ViewData["EditorialesID"] = new SelectList(_context.Editorial, "ID", "ID");
-            return View();
+            return View($"{viewPath}/Create");
         }
 
         // POST: Libros/Create
@@ -69,7 +72,7 @@ namespace LibreriaMVC.Controllers
             }
             ViewData["AutoresID"] = new SelectList(_context.Autor, "ID", "ID", libros.AutoresID);
             ViewData["EditorialesID"] = new SelectList(_context.Editorial, "ID", "ID", libros.EditorialesID);
-            return View(libros);
+            return View($"{viewPath}/Create", libros);
         }
 
         // GET: Libros/Edit/5
@@ -87,7 +90,7 @@ namespace LibreriaMVC.Controllers
             }
             ViewData["AutoresID"] = new SelectList(_context.Autor, "ID", "ID", libros.AutoresID);
             ViewData["EditorialesID"] = new SelectList(_context.Editorial, "ID", "ID", libros.EditorialesID);
-            return View(libros);
+            return View($"{viewPath}/Edit", libros);
         }
 
         // POST: Libros/Edit/5
@@ -124,7 +127,7 @@ namespace LibreriaMVC.Controllers
             }
             ViewData["AutoresID"] = new SelectList(_context.Autor, "ID", "ID", libros.AutoresID);
             ViewData["EditorialesID"] = new SelectList(_context.Editorial, "ID", "ID", libros.EditorialesID);
-            return View(libros);
+            return View($"{viewPath}/Edit", libros);
         }
 
         // GET: Libros/Delete/5
@@ -144,7 +147,7 @@ namespace LibreriaMVC.Controllers
                 return NotFound();
             }
 
-            return View(libros);
+            return View($"{viewPath}/Delete", libros);
         }
 
         // POST: Libros/Delete/5

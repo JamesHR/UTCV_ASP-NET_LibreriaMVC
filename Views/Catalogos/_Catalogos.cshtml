@@ -1,0 +1,58 @@
+@{
+    ViewData["Title"] = "Administracion";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<link href="~/css/dashboard.css" rel="stylesheet">
+<div>    
+    <!-- Panel de administración -->
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                <div class="sidebar-sticky pt-3">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Catalogos" asp-action="Index">
+                                <span>
+                                    <i class="fas fa-landmark"></i>
+                                </span>
+                                 Dashboard
+                            </a>
+                        </li>
+                         <li class="nav-item">
+                            <a class="nav-link" asp-controller="Catalogos" asp-action="Autor">
+                                <span>
+                                    <i class="fas fa-users"></i>
+                                </span>
+                                 Autores
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Catalogos" asp-action="Editorial">
+                                <span>
+                                    <i class="fas fa-store"></i>
+                                </span>
+                                 Editoriales
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Catalogos" asp-action="Libro">
+                                <span>
+                                    <i class="fas fa-book"></i>
+                                </span>
+                                 Libros
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+                <div class="CatalogosContent">
+                    @RenderBody()
+                </div>
+            </main>
+        </div>
+    </div>
+</div>
+@RenderSection("Scripts", required: false)

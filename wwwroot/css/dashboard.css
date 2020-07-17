@@ -125,3 +125,20 @@ body {
     background-color: #fff;
     text-align: right;
   }
+
+/*
+* Forms
+*/
+
+.CatalogosContent {
+  justify-content: center;
+  align-items: center;
+}
+
+form {
+  width:  auto;
+}
+
+form .btn {
+  display:inline;
+}

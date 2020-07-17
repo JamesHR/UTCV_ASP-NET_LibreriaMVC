@@ -11,21 +11,21 @@ namespace LibreriaMVC.Controllers
 
         public IActionResult Index()
         {
-            return View("../Catalogos/Index");
+            return View("../Catalogos/index");
         }
 
         public IActionResult Autor()
         {
-            return View("../Catalogos/Autores/Index");
+            return RedirectToAction("Index","Autores");
         }
         public IActionResult Editorial()
         {
-            return View("../Catalogos/Editoriales/Index");
+            return RedirectToAction("Index","Editoriales");
         }
 
         public IActionResult Libro()
         {
-            return View("../Catalogos/Libros/Index");
+            return RedirectToAction("Index","libros");
         }
     }
 }

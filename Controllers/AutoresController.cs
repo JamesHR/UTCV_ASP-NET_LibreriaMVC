@@ -11,10 +11,11 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace LibreriaMVC.Controllers
 {
-    [Authorize]
+    [Authorize(Roles="admin")]
     public class AutoresController : Controller
     {
         private readonly LibreriaDbContext _context;
+        private readonly string viewPath = "../Catalogos/Autores";
         public AutoresController(LibreriaDbContext context)
         {
             _context = context;
@@ -23,7 +24,7 @@ namespace LibreriaMVC.Controllers
         // GET: Autores
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Autor.ToListAsync());
+            return View($"{viewPath}/Index", await _context.Autor.ToListAsync());
         }
 
         // GET: Autores/Details/5
@@ -41,13 +42,13 @@ namespace LibreriaMVC.Controllers
                 return NotFound();
             }
 
-            return View(autores);
+            return View($"{viewPath}/Details", autores);
         }
 
         // GET: Autores/Create
         public IActionResult Create()
         {
-            return View();
+            return View($"{viewPath}/Create");
         }
 
         // POST: Autores/Create
@@ -63,7 +64,7 @@ namespace LibreriaMVC.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(autores);
+            return View($"{viewPath}/Edit", autores);
         }
 
         // GET: Autores/Edit/5
@@ -79,7 +80,7 @@ namespace LibreriaMVC.Controllers
             {
                 return NotFound();
             }
-            return View(autores);
+            return View($"{viewPath}/Edit", autores);
         }
 
         // POST: Autores/Edit/5
@@ -114,7 +115,7 @@ namespace LibreriaMVC.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(autores);
+            return View($"{viewPath}/Edit", autores);
         }
 
         // GET: Autores/Delete/5
@@ -132,7 +133,7 @@ namespace LibreriaMVC.Controllers
                 return NotFound();
             }
 
-            return View(autores);
+            return View($"{viewPath}/Delete", autores);
         }
 
         // POST: Autores/Delete/5

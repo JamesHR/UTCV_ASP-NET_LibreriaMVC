@@ -1,58 +1,12 @@
 @{
     ViewData["Title"] = "Administracion";
+    Layout = "~/Views/Catalogos/_Catalogos.cshtml";
+    
 }
 
-<link href="~/css/dashboard.css" rel="stylesheet">
-<div class="text-center">    
-    <!-- Panel de administración -->
-    <div class="container-fluid">
-        <div class="row">
-            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-                <div class="sidebar-sticky pt-3">
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="#">
-                                <span>
-                                    <i class="fas fa-landmark"></i>
-                                </span>
-                                 Dashboard
-                            </a>
-                        </li>
-                         <li class="nav-item">
-                            <a class="nav-link" asp-controller="Catalogos" asp-action="Autor">
-                                <span>
-                                    <i class="fas fa-users"></i>
-                                </span>
-                                 Autores
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span>
-                                    <i class="fas fa-store"></i>
-                                </span>
-                                 Editoriales
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span>
-                                    <i class="fas fa-book"></i>
-                                </span>
-                                 Libros
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
-                <div class="text-center">
-                    <br>
-                    <h3>Bienvenido @User.Identity.Name</h3>
-                    <hr>
-                    <img width="400" src="~/images/logo.png" alt="Around">
-                </div>
-            </main>
-        </div>
-    </div>
+<div class="text-center">
+    <br>
+    <h3>Bienvenido @User.Identity.Name</h3>
+    <hr>
+    <img width="400" src="~/images/logo.png" alt="Around">
 </div>
