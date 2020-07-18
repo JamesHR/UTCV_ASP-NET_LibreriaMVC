@@ -1,0 +1,16 @@
+@model ErrorViewModel
+@{
+    ViewData["Title"] = "Access Denied";
+}
+<div>
+    <h1 class="text-danger">Ups</h1>
+    <h2>Parece que no tenemos acceso a este sitio</h2>
+    <a class="nav-link" asp-controller="Home" asp-action="Index">
+        <span>
+            <i class="fas fa-home"></i>
+        </span>
+        Volver
+    </a>
+    <img class="float-right" width="300" src="~/images/pirateCat.png" alt="Logo">
+</div>
+

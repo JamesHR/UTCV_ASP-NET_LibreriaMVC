@@ -106,9 +106,9 @@ namespace LibreriaMVC.Controllers
         }
 
         public IActionResult homeLogged () =>
-            (HttpContext.User.IsInRole("cliente")) ? 
-                        RedirectToAction("Index", "Home")
-                        : RedirectToAction("Index", "Catalogos");
+            (HttpContext.User.IsInRole("admin")) ? 
+                        RedirectToAction("Index", "Catalogos")
+                        : RedirectToAction("Index", "Home");
 
         // 5. Función para cerrar sesión
         [HttpGet]

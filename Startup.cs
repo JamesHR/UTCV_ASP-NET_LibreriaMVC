@@ -29,7 +29,11 @@ namespace LibreriaMVC
         public void ConfigureServices(IServiceCollection services)
         {
             //Requerimos autenticación
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            .AddCookie(options => {
+                options.AccessDeniedPath = "/Home/AccessDenied";
+                options.LoginPath = "/Home/Login";
+                });
 
             services.AddDbContext<LibreriaDbContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("LibrotecaDbContext")));
